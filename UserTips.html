@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tips Shared by Users</title>
+    <link rel="stylesheet" href="styles.css">
+  
+       <script>
+        function displayInput() {
+          const storedName = localStorage.getItem('storedName');
+          const storedTip = localStorage.getItem('storedTip');
+         
+          document.getElementById('displayArea').innerText = ` - ${storedTip}`|| 'No input found';
+        }
+    </script>
+</head>
+
+<body onload="displayInput()">
+    <header>
+        <h1>Break Into Fitness</h1>
+        <nav>
+            <ul>
+                <li><a href="FitnessLog.html">Home</a></li>
+                <li><a href="FitnessLog.html#about">About Us</a></li>
+                <li><a href="FitnessLog.html#blog">Blogs</a></li>
+              <li><a href="FitnessTools.html">Fitness Tools</a></li>
+                <li><a href="FitnessLog.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    
+    <main>
+        <section id = "blog" class="blog-posts">
+            <article>
+        <h2>Fitness Tips shared by Fit User</h2>
+        <p> - You need to be regular and consistent with workout routine and stick to diet plan.</p>
+        <p id= "displayArea"></p>
+            </article>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Fitness Blog. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+

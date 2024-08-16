@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Break Into Fitness</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Break Into Fitness</h1>
+        <nav>
+            <ul>
+                <li><a href="FitnessLog.html">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#blog">Blogs</a></li>
+                <li><a href="FitnessTools.html">Fitness Tools</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+      
+        <section id ="about" class="hero">
+            <h2>Welcome to Your Fitness Journey</h2>
+          <!--  <p>Your go-to resource for fitness tips, workout routines, and healthy living. We share tried and tested knowledge on personal fitness which can asssit in your journey towards personal fitness and live a longer life. </p> -->
+          <p>Welcome to your ultimate destination for all things fitness! Whether you are a beginner or a seasoned enthusiast, our platform is designed to support your journey toward a healthier, more active lifestyle. We provide expert advice on fitness, offering you a wide range of workout routines, from strength training and cardio to flexibility and balance exercises. Our content is backed by tried-and-true knowledge, ensuring you have reliable information that can make a real difference in your personal fitness journey.</p>
+          <p>In addition to workout guidance, we are committed to helping you embrace healthy living. From nutrition tips to mental wellness strategies, we cover all aspects of a balanced lifestyle. Our goal is to empower you with the tools and insights needed to achieve your fitness goals, maintain motivation, and live a longer, healthier life. Join us, and take the next step towards becoming the best version of yourself.</p>
+        </section>
+      <div>
+         <section id="Fitness Tools" style = "text-align: center;">
+            <h2>Check Out Our <a href="FitnessTools.html">Fitness Tools</a> section</h2>
+         </section>
+      
+      
+        <section id = "blog" class="blog-posts">
+            <article>
+                <h2>Science Behind Weight Loss</h2>
+                <p> Weight loss is a complex and multidimensional process that incorporates various essential factors such as the role of metabolism calorie deficit, and regular exercise. </p>
+                <a href="ScienceBehindWeightLoss.html">Read More</a>
+            </article>
+            <article>
+                <h2>7 Effective fitness tips for Beginners</h2>
+                <p>What Does Being Fit Mean?  Being fit is often considered the elixir of life, hence so many fitness tips for beginners exist. Someone who is</p>
+                <a href="EffectiveTipsForBeginners.html">Read More</a>
+            </article>
+          <article>
+                <h2>Fitness Tips shared by Users</h2>
+                <p>You can check out the tips shared by Fit users of the page based on their experience. If you are fit, wanna share tips?  Use Submit Tips form below.</p>
+                <a href="UserTips.html">Click here for User Tips</a>
+            </article>
+            <!-- Add more blog posts as needed -->
+        </section>
+      </div>
+      <section class="section" id="submit-tips">
+            <h2>Fit? Share Some Fitness Tips</h2>
+            <form>
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="tip">Your Fitness Tip:</label>
+                <textarea id="tip" name="tip" rows="4" required></textarea>
+                <input type="submit" value="Submit Tip" onclick="submitTip(event)">
+            </form>
+            <div id="submitted-tips"></div>
+        </section>
+      
+        <div id = "contact" class="container" style= "margin-left: 20px;">
+        <h2>Contact Us</h2>
+        <form id="contactForm" action="/submit_form" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name1" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <input type="submit" value="Send Message" onclick ="submitMessage(event)">
+        </form>
+    </div>
+
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Fitness Blog. All rights reserved.</p>
+    </footer>
+  
+    <script>
+        
+
+        function submitTip(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const tip = document.getElementById('tip').value;
+            const tipContainer = document.createElement('div');
+            tipContainer.innerHTML = `<p><strong>${name}:</strong> ${tip}</p>`;
+            document.getElementById('submitted-tips').appendChild(tipContainer);
+            localStorage.setItem('storedTip', tip);
+        
+        }
+
+        
+  
+      function submitMessage(event) {
+            event.preventDefault();
+            const name = document.getElementById('name1').value;
+            
+            const tipContainer = document.createElement('div');
+            tipContainer.innerHTML = `<p><strong>${name}:</strong> Message sent</p>`;
+            document.getElementById('contact').appendChild(tipContainer);
+        }
+      
+    </script>
+</body>
+</html>
+
