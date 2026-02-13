@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* FORCING THE SYSTEM TO COMPLY */
+        * {
+            margin: 0 !important;
+            padding: 0 !important;
+            box-sizing: border-box !important;
+        }
+
+        body, html {
+            width: 100% !important;
+            height: 100% !important;
+            overflow: hidden !important;
+            background-color: #7a0000 !important; /* Hard fallback */
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            font-family: 'Arial', sans-serif !important;
+        }
+
+        /* SEXY RED ANIMATED BACKGROUND */
+        .master-bg {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: linear-gradient(-45deg, #4b0000, #90011f, #d00000, #ff4d6d) !important;
+            background-size: 400% 400% !important;
+            animation: moveGradient 10s ease infinite !important;
+            z-index: -2 !important;
+        }
+
+        @keyframes moveGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* FALLING ROSES */
+        .rose-rain {
+            position: fixed !important;
+            top: -50px !important;
+            font-size: 28px !important;
+            z-index: 1 !important;
+            user-select: none !important;
+            pointer-events: none !important;
+            animation: fallingRose linear forwards !important;
+        }
+
+        @keyframes fallingRose {
+            to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* THE GLASS CARD */
+        .main-container {
+            position: relative !important;
+            z-index: 10 !important;
+            background: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(25px) !important;
+            -webkit-backdrop-filter: blur(25px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            border-radius: 40px !important;
+            padding: 50px 30px !important;
+            width: 90% !important;
+            max-width: 400px !important;
+            text-align: center !important;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5) !important;
+            color: white !important;
+        }
+
+        h1 { font-size: 26px !important; font-weight: 900 !important; line-height: 1.3 !important; margin-bottom: 30px !important; }
+
+        .btn-style {
+            padding: 15px 45px !important;
+            font-size: 20px !important;
+            font-weight: bold !important;
+            border-radius: 50px !important;
+            border: none !important;
+            cursor: pointer !important;
+            transition: 0.3s !important;
+        }
+
+        #yesBtn { background: #fff !important; color: #90011f !important; }
+        #yesBtn:hover { transform: scale(1.1) !important; box-shadow: 0 0 20px white !important; }
+
+        #noBtn {
+            background: rgba(0,0,0,0.5) !important;
+            color: white !important;
+            border: 1px solid white !important;
+            position: fixed !important;
+            z-index: 9999 !important;
+        }
+
+        .hidden { display: none !important; }
+
+        .letter-content {
+            background: rgba(255, 255, 255, 0.95) !important;
+            color: #222 !important;
+            padding: 25px !important;
+            border-radius: 25px !important;
+            text-align: left !important;
+            line-height: 1.6 !important;
+            font-size: 17px !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="master-bg"></div>
+
+    <audio id="loveSong" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="main-container" id="cardBox">
+        <div id="step1">
+            <div style="font-size: 70px; margin-bottom: 20px;">🌹</div>
+            <h1>Babab, bababab,<br>would you like to be my valentine?</h1>
+            <button id="yesBtn" class="btn-style">YES</button>
+        </div>
+
+        <div id="step2" class="hidden">
+            <h2 style="font-size: 32px; font-weight: 900; margin-bottom: 10px;">Yayyyyy.... i knew it</h2>
+            <p style="font-style: italic; margin-bottom: 30px; font-size: 18px;">Cuomehh Touhhh myhh cotteguhhhh….🫠</p>
+            <button id="nextBtn" class="btn-style" style="background: #90011f; color: white; width: 100%;">Click on zis...</button>
+        </div>
+
+        <div id="step3" class="hidden">
+            <div class="letter-content">
+                I am with you, Krishna no matter what. I will make sure you would be happy with me and my family. I always got your back. You are love of my life, I will always respect that.
+                <br><br>
+                With all love, <strong>M.K</strong><br>
+                <span style="color: #d00000; font-weight: 900; font-size: 24px;">MANIIIIIIIIIIIIIII</span>
+            </div>
+        </div>
+    </div>
+
+    <button id="noBtn" class="btn-style">NO</button>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const audio = document.getElementById('loveSong');
+
+        const s1 = document.getElementById('step1');
+        const s2 = document.getElementById('step2');
+        const s3 = document.getElementById('step3');
+
+        // RUNAWAY LOGIC (STRICT)
+        function runaway() {
+            const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+            const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+            noBtn.style.left = Math.random() * maxX + 'px';
+            noBtn.style.top = Math.random() * maxY + 'px';
+        }
+        noBtn.addEventListener('mouseover', runaway);
+
+        // PAGE NAVIGATION
+        yesBtn.addEventListener('click', () => {
+            s1.classList.add('hidden');
+            noBtn.classList.add('hidden');
+            s2.classList.remove('hidden');
+            audio.play();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            s2.classList.add('hidden');
+            s3.classList.remove('hidden');
+        });
+
+        // ROSE RAIN GENERATOR
+        setInterval(() => {
+            const r = document.createElement('div');
+            r.innerHTML = '🌹';
+            r.className = 'rose-rain';
+            r.style.left = Math.random() * 100 + 'vw';
+            r.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(r);
+            setTimeout(() => r.remove(), 5000);
+        }, 300);
+    </script>
+</body>
+</html>
